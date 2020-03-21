@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.1.0] - 2020-03-21
 ### Added
 - Change `SocksTimeout` option by setting `$SOCKS_TIMEOUT_SECONDS`
 
@@ -16,5 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Tor Socks5 & DNS proxy
 
-[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/fphammerle/docker-tor-proxy/compare/1.0.0...v1.1.0
 [1.0.0]: https://github.com/fphammerle/docker-tor-proxy/releases/tag/1.0.0
