@@ -7,6 +7,8 @@ services:
     ports:
     - '127.0.0.1:9050:9050/tcp'
     - '127.0.0.1:53:53/udp'
+    environment:
+      SOCKS_TIMEOUT_SECONDS: 240
     security_opt: ['no-new-privileges']
     restart: unless-stopped
     cpus: 0.5

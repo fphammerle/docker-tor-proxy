@@ -17,7 +17,9 @@ RUN adduser -S onion \
 
 EXPOSE 9050/tcp
 EXPOSE 53/udp
-COPY torrc /etc/tor/torrc
+COPY torrc.template entrypoint.sh /
+ENV SOCKS_TIMEOUT_SECONDS=
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["tor"]
 

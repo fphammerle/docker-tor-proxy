@@ -31,3 +31,8 @@ isolate:
 ```sh
 iptables -A OUTPUT ! -o lo -j REJECT --reject-with icmp-admin-prohibited
 ```
+
+change `SocksTimeout` option:
+```sh
+$ docker run -e SOCKS_TIMEOUT_SECONDS=60 …
+```
