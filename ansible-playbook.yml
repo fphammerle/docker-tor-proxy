@@ -14,7 +14,7 @@
       purge_networks: yes
       ports:
       - '127.0.0.1:9050:9050/tcp'
-      - '127.0.0.1:53:53/udp'
+      - '127.0.0.1:53:9053/udp'
       restart_policy: unless-stopped
       memory: 128M
   - iptables:

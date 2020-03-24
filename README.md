@@ -7,7 +7,7 @@ signed tags: https://github.com/fphammerle/docker-tor-proxy/tags
 ```sh
 $ docker run --rm --name tor-proxy \
     -p 127.0.0.1:9050:9050/tcp \
-    -p 127.0.0.1:53:53/udp \
+    -p 127.0.0.1:53:9053/udp \
     fphammerle/tor-proxy
 ```
 
