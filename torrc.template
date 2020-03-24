@@ -1,7 +1,7 @@
 Log notice stdout
 
 SocksPort 0.0.0.0:9050
-DNSPort 0.0.0.0:53
+DNSPort 0.0.0.0:9053
 
 SocksTimeout {socks_timeout_seconds}
 

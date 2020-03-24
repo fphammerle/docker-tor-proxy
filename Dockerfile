@@ -16,14 +16,16 @@ RUN adduser -S onion \
 # ENV PAGER=less
 
 EXPOSE 9050/tcp
-EXPOSE 53/udp
+EXPOSE 9053/udp
 COPY torrc.template entrypoint.sh /
 ENV SOCKS_TIMEOUT_SECONDS=
 ENTRYPOINT ["/entrypoint.sh"]
+RUN chmod -c a+rX /torrc.template /entrypoint.sh
 
-CMD ["tor"]
+USER onion
+CMD ["tor", "-f", "/tmp/torrc"]
 
 HEALTHCHECK CMD \
     curl --silent --socks5 localhost:9050 https://google.com > /dev/null \
-    && [ ! -z "$(dig +notcp +short one.one.one.one @localhost)" ] \
+    && [ ! -z "$(dig -p 9053 +notcp +short one.one.one.one @localhost)" ] \
     || exit 1
