@@ -21,10 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Change `SocksTimeout` option by setting `$SOCKS_TIMEOUT_SECONDS`
 
-### Fixed
-- upgrade default tor version: 0.4.1.6 -> 0.4.1.9
-  (non-breaking, fixes only, https://gitweb.torproject.org/tor.git/plain/ChangeLog)
-
 ## [1.0.0] - 2019-10-12
 ### Added
 - Tor Socks5 & DNS proxy
