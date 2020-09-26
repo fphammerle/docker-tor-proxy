@@ -9,11 +9,11 @@ RUN adduser -S onion \
         bind-tools=$BIND_TOOLS_PACKAGE_VERSION `# dig` \
         tor=$TOR_PACKAGE_VERSION
 
-# RUN apk add --no-cache \
-#         less \
-#         man \
-#         tor-doc=$TOR_PACKAGE_VERSION
-# ENV PAGER=less
+#RUN apk add --no-cache \
+#        less \
+#        man-db \
+#        tor-doc=$TOR_PACKAGE_VERSION
+#ENV PAGER=less
 
 EXPOSE 9050/tcp
 EXPOSE 9053/udp
@@ -26,6 +26,8 @@ USER onion
 CMD ["tor", "-f", "/tmp/torrc"]
 
 HEALTHCHECK CMD \
-    curl --silent --socks5 localhost:9050 https://google.com > /dev/null \
+    printf 'AUTHENTICATE\nGETINFO status/circuit-established\n' \
+        | nc localhost 9051 | grep -q status/circuit-established=1 \
+    && curl --silent --socks5 localhost:9050 https://google.com > /dev/null \
     && [ ! -z "$(dig -p 9053 +notcp +short one.one.one.one @localhost)" ] \
     || exit 1

@@ -1,8 +1,11 @@
 Log notice stdout
 
-SocksPort 0.0.0.0:9050
+# https://gitweb.torproject.org/torspec.git/tree/control-spec.txt
+ControlPort localhost:9051
+
 DNSPort 0.0.0.0:9053
 
+SocksPort 0.0.0.0:9050
 SocksTimeout {socks_timeout_seconds}
 
 # try to

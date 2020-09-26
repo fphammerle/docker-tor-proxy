@@ -5,7 +5,7 @@ docker hub: https://hub.docker.com/r/fphammerle/tor-proxy
 signed tags: https://github.com/fphammerle/docker-tor-proxy/tags
 
 ```sh
-$ docker run --rm --name tor-proxy \
+$ sudo docker run --rm --name tor_proxy \
     -p 127.0.0.1:9050:9050/tcp \
     -p 127.0.0.1:53:9053/udp \
     fphammerle/tor-proxy
@@ -13,7 +13,7 @@ $ docker run --rm --name tor-proxy \
 
 or after cloning the repository 🐙
 ```sh
-$ docker-compose up
+$ sudo docker-compose up
 ```
 
 test proxies:
@@ -29,10 +29,15 @@ $ chromium-browser --proxy-server=socks5://localhost:9050 ipinfo.io
 
 isolate:
 ```sh
-iptables -A OUTPUT ! -o lo -j REJECT --reject-with icmp-admin-prohibited
+sudo iptables -A OUTPUT ! -o lo -j REJECT --reject-with icmp-admin-prohibited
 ```
 
 change `SocksTimeout` option:
 ```sh
-$ docker run -e SOCKS_TIMEOUT_SECONDS=60 …
+$ sudo docker run -e SOCKS_TIMEOUT_SECONDS=60 …
+```
+
+show circuits:
+```sh
+$ sudo docker exec tor_proxy sh -c 'printf "AUTHENTICATE\nGETINFO circuit-status\n" | nc localhost 9051'
 ```
