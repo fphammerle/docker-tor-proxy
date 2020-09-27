@@ -41,3 +41,4 @@ show circuits:
 ```sh
 $ sudo docker exec tor_proxy sh -c 'printf "AUTHENTICATE\nGETINFO circuit-status\n" | nc localhost 9051'
 ```
+relay search: https://metrics.torproject.org/rs.html
