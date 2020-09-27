@@ -9,10 +9,11 @@ services:
     - '127.0.0.1:53:9053/udp'
     environment:
       SOCKS_TIMEOUT_SECONDS: 240
-    security_opt: ['no-new-privileges']
-    restart: unless-stopped
+    cap_drop: [ALL]
+    #cap_add: [SYS_PTRACE]
+    security_opt: [no-new-privileges]
     cpus: 0.5
     mem_limit: 128m
-    #cap_add: [SYS_PTRACE]
+    restart: unless-stopped
 
 # https://docs.docker.com/compose/compose-file/compose-file-v2/
