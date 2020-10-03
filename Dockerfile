@@ -7,6 +7,7 @@ RUN apk add --no-cache \
         curl=$CURL_PACKAGE_VERSION \
         bind-tools=$BIND_TOOLS_PACKAGE_VERSION `# dig` \
         tor=$TOR_PACKAGE_VERSION
+VOLUME /var/lib/tor
 
 #RUN apk add --no-cache \
 #        less \

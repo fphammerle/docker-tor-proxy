@@ -5,9 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- create mount point at `/var/lib/tor`
+  to be able to make container's root filesystem read-only
+
 ### Changed
 - moved tor's data directory from `/home/onion/.tor` to `/var/lib/tor`
 - run `tor` as user `tor` (uid=100) instead of `onion` (uid=101)
+- docker-compose & ansible-playbook: read-only root filesystem
 
 ### Fixed
 - ansible-playbook: drop capabilities

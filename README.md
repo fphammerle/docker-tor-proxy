@@ -28,6 +28,14 @@ $ ssh -o 'ProxyCommand nc -x localhost:9050 -v %h %p' abcdefghi.onion
 $ chromium-browser --proxy-server=socks5://localhost:9050 ipinfo.io
 ```
 
+### read-only root filesystem
+
+optionally add
+```sh
+$ sudo docker run --read-only -v tor_proxy_data:/var/lib/tor --tmpfs /tmp:rw,size=4k` …
+```
+to make the container's root filesystem read-only
+
 ### isolate
 
 ```sh

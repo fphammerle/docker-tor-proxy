@@ -7,8 +7,19 @@
         com.docker.network.bridge.name: tor
   - docker_container:
       name: tor_proxy
-      # 1.0.0-tor0.4.1.6-amd64
-      image: fphammerle/tor-proxy@sha256:ad55d07b1b21c35fa044dc3e1ea6c7d8494f39eb89491ddad35c245340f7cd4b
+      # TODO use fingerprint
+      image: fphammerle/tor-proxy:3.0.0-tor0.4.3.5-amd64
+      mounts:
+      - type: volume
+        source: tor_proxy_data
+        target: /var/lib/tor
+        read_only: no
+      - type: tmpfs
+        target: /tmp # torrc
+        # nosuid,nodev,noexec added by default
+        tmpfs_mode: '1777'
+        tmpfs_size: 4k
+      read_only: yes
       networks:
       - name: tor_proxy_network
       purge_networks: yes
