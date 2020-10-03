@@ -3,8 +3,7 @@ FROM alpine:3.12
 ARG CURL_PACKAGE_VERSION=7.69.1-r1
 ARG BIND_TOOLS_PACKAGE_VERSION=9.16.6-r0
 ARG TOR_PACKAGE_VERSION=0.4.3.5-r0
-RUN adduser -S onion \
-    && apk add --no-cache \
+RUN apk add --no-cache \
         curl=$CURL_PACKAGE_VERSION \
         bind-tools=$BIND_TOOLS_PACKAGE_VERSION `# dig` \
         tor=$TOR_PACKAGE_VERSION
@@ -18,11 +17,11 @@ RUN adduser -S onion \
 EXPOSE 9050/tcp
 EXPOSE 9053/udp
 COPY torrc.template entrypoint.sh /
+RUN chmod -c a+rX /torrc.template /entrypoint.sh
 ENV SOCKS_TIMEOUT_SECONDS=
 ENTRYPOINT ["/entrypoint.sh"]
-RUN chmod -c a+rX /torrc.template /entrypoint.sh
 
-USER onion
+USER tor
 CMD ["tor", "-f", "/tmp/torrc"]
 
 HEALTHCHECK CMD \
