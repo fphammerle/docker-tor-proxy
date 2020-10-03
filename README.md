@@ -16,7 +16,8 @@ or after cloning the repository 🐙
 $ sudo docker-compose up
 ```
 
-test proxies:
+### test proxies
+
 ```sh
 $ curl --proxy socks5h://localhost:9050 ipinfo.io
 $ torsocks wget -O - ipinfo.io
@@ -27,17 +28,20 @@ $ ssh -o 'ProxyCommand nc -x localhost:9050 -v %h %p' abcdefghi.onion
 $ chromium-browser --proxy-server=socks5://localhost:9050 ipinfo.io
 ```
 
-isolate:
+### isolate
+
 ```sh
 sudo iptables -A OUTPUT ! -o lo -j REJECT --reject-with icmp-admin-prohibited
 ```
 
-change `SocksTimeout` option:
+### change `SocksTimeout` option
+
 ```sh
 $ sudo docker run -e SOCKS_TIMEOUT_SECONDS=60 …
 ```
 
-show circuits:
+### show circuits
+
 ```sh
 $ sudo docker exec tor_proxy \
     sh -c 'printf "AUTHENTICATE\nGETINFO circuit-status\nQUIT\n" | nc localhost 9051'
