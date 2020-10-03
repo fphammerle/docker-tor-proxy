@@ -39,6 +39,7 @@ $ sudo docker run -e SOCKS_TIMEOUT_SECONDS=60 …
 
 show circuits:
 ```sh
-$ sudo docker exec tor_proxy sh -c 'printf "AUTHENTICATE\nGETINFO circuit-status\n" | nc localhost 9051'
+$ sudo docker exec tor_proxy \
+    sh -c 'printf "AUTHENTICATE\nGETINFO circuit-status\nQUIT\n" | nc localhost 9051'
 ```
 relay search: https://metrics.torproject.org/rs.html
