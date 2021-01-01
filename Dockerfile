@@ -1,12 +1,7 @@
 FROM alpine:3.12.3
 
-ARG CURL_PACKAGE_VERSION=7.69.1-r3
-ARG BIND_TOOLS_PACKAGE_VERSION=9.16.6-r0
 ARG TOR_PACKAGE_VERSION=0.4.3.7-r0
-RUN apk add --no-cache \
-        curl=$CURL_PACKAGE_VERSION \
-        bind-tools=$BIND_TOOLS_PACKAGE_VERSION `# dig` \
-        tor=$TOR_PACKAGE_VERSION
+RUN apk add --no-cache tor=$TOR_PACKAGE_VERSION
 VOLUME /var/lib/tor
 
 #RUN apk add --no-cache \
@@ -25,7 +20,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 USER tor
 CMD ["tor", "-f", "/tmp/torrc"]
 
+# https://gitweb.torproject.org/torspec.git/tree/control-spec.txt
 HEALTHCHECK CMD \
-    curl --silent --socks5 localhost:9050 https://google.com > /dev/null \
-    && [ ! -z "$(dig -p 9053 +notcp +short one.one.one.one @localhost)" ] \
-    || exit 1
+    printf "AUTHENTICATE\nGETINFO network-liveness\nQUIT\n" | nc localhost 9051 \
+        | grep -q network-liveness=up || exit 1

@@ -1,4 +1,7 @@
-Log notice stdout
+# hide healthchecks:
+# > [notice] {CONTROL} New control connection opened from 127.0.0.1.
+Log [~control]notice warn stdout
+LogMessageDomains 1
 
 # default: ~/.tor
 DataDirectory /var/lib/tor

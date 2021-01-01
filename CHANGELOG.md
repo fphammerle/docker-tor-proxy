@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- healthcheck: improve privacy by probing
+  [network-liveness](https://gitweb.torproject.org/torspec.git/tree/control-spec.txt)
+  instead of periodic http and dns requests
+- changed log level of `control` domain to `warn`
+  (to avoid log spam by healthcheck connecting to control listener)
+
+### Removed
+- `curl`
+- `bin-tools` package including `dig`
 
 ## [3.0.0] - 2020-10-03
 ### Added
