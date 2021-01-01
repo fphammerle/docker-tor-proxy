@@ -5,16 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.0] - 2021-01-01
 ### Changed
 - healthcheck: replace periodic http requests with probing
   [network-liveness](https://gitweb.torproject.org/torspec.git/tree/control-spec.txt)
   to improve privacy (keeping dns requests for faster updates)
 - changed log level of `control` domain to `warn`
   (to avoid log spam by healthcheck connecting to control listener)
+- added message domains to log messages
 
 ### Removed
 - `curl`
-- `bin-tools` package including `dig`
+- `bind-tools` package including `dig`
 
 ## [3.0.0] - 2020-10-03
 ### Added
@@ -52,7 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - tor socks5 & DNS proxy
 
-[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v1.1.1...v2.0.0
