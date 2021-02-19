@@ -1,4 +1,4 @@
-FROM alpine:3.13.1
+FROM alpine:3.13.2
 
 ARG TOR_PACKAGE_VERSION=0.4.4.6-r1
 RUN apk add --no-cache tor=$TOR_PACKAGE_VERSION
