@@ -1,3 +1,5 @@
+# https://www.torproject.org/docs/tor-manual.html.en
+
 # hide healthchecks:
 # > [notice] {CONTROL} New control connection opened from 127.0.0.1.
 Log [~control]notice warn stdout
@@ -13,6 +15,15 @@ DNSPort 0.0.0.0:9053
 
 SocksPort 0.0.0.0:9050
 SocksTimeout {socks_timeout_seconds}
+
+# requires netfilter rules
+# socks5 with auth-based circuit isolation (tor browser, torsocks --isolate) should be preferred
+# cave: IsolateDestAddr & IsolateDestPort are not enabled
+# https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy
+# https://github.com/epidemics-scepticism/writing/blob/b6733379d653b30771d578ace04c262600345122/misconception.md#transparent-proxying-lacks-context
+# https://lists.torproject.org/pipermail/tor-talk/2014-March/032507.html
+# https://github.com/mitmproxy/mitmproxy/blob/v6.0.2/mitmproxy/platform/linux.py#L27
+TransPort 0.0.0.0:9040 IsolateClientAddr IsolateClientProtocol
 
 # try to
 HardwareAccel 1
