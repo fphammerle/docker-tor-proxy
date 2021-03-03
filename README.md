@@ -55,3 +55,9 @@ $ sudo docker exec tor_proxy \
     sh -c 'printf "AUTHENTICATE\nGETINFO circuit-status\nQUIT\n" | nc localhost 9051'
 ```
 relay search: https://metrics.torproject.org/rs.html
+
+or using [onioncircuits](https://gitlab.tails.boum.org/tails/onioncircuits)([debian repo](https://salsa.debian.org/pkg-privacy-team/onioncircuits)):
+```sh
+$ sudo nsenter --target "$(sudo docker inspect --format='{{.State.Pid}}' tor_proxy)" --net \
+    sudo -u $USER onioncircuits
+```
