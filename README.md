@@ -51,8 +51,8 @@ $ sudo docker run -e SOCKS_TIMEOUT_SECONDS=60 …
 ### Show Circuits
 
 ```sh
-$ sudo docker exec tor_proxy \
-    sh -c 'printf "AUTHENTICATE\nGETINFO circuit-status\nQUIT\n" | nc localhost 9051'
+$ printf 'AUTHENTICATE\nGETINFO circuit-status\nQUIT\n' \
+    | sudo docker exec -i tor_proxy nc localhost 9051
 ```
 relay search: https://metrics.torproject.org/rs.html
 
@@ -67,6 +67,6 @@ $ sudo nsenter --target "$(sudo docker inspect --format='{{.State.Pid}}' tor_pro
 
 Disable `SafeLogging` (temporarily) to log IP addresses instead of `[scrubbed]`:
 ```
-$ sudo docker exec tor_proxy \
-    sh -c 'printf "AUTHENTICATE\nSETCONF SafeLogging=0\nQUIT\n" | nc localhost 9051'
+$ printf 'AUTHENTICATE\nSETCONF SafeLogging=0\nGETCONF SafeLogging\nQUIT\n' \
+    | sudo docker exec -i tor_proxy nc localhost 9051
 ```
