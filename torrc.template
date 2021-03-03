@@ -22,6 +22,7 @@ SocksTimeout {socks_timeout_seconds}
 # https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy
 # https://github.com/epidemics-scepticism/writing/blob/b6733379d653b30771d578ace04c262600345122/misconception.md#transparent-proxying-lacks-context
 # https://lists.torproject.org/pipermail/tor-talk/2014-March/032507.html
+# https://gitweb.torproject.org/tor.git/tree/src/or/connection_edge.c?id=6285d9bdcf7f210c56abd25f75133e30d05a7473#n1423
 # https://github.com/mitmproxy/mitmproxy/blob/v6.0.2/mitmproxy/platform/linux.py#L27
 TransPort 0.0.0.0:9040 IsolateClientAddr IsolateClientProtocol
 
