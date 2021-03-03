@@ -1,8 +1,8 @@
 # docker: tor socks & dns proxy 🌐 🐳
 
-docker hub: https://hub.docker.com/r/fphammerle/tor-proxy
+Docker Hub: https://hub.docker.com/r/fphammerle/tor-proxy
 
-signed tags: https://github.com/fphammerle/docker-tor-proxy/tags
+Signed image tags: https://github.com/fphammerle/docker-tor-proxy/tags
 
 ```sh
 $ sudo docker run --rm --name tor_proxy \
@@ -16,7 +16,7 @@ or after cloning the repository 🐙
 $ sudo docker-compose up
 ```
 
-### test proxies
+### Test Proxies
 
 ```sh
 $ curl --proxy socks5h://localhost:9050 ipinfo.io
@@ -28,27 +28,27 @@ $ ssh -o 'ProxyCommand nc -x localhost:9050 -v %h %p' abcdefghi.onion
 $ chromium-browser --proxy-server=socks5://localhost:9050 ipinfo.io
 ```
 
-### read-only root filesystem
+### Read-only Root Filesystem
 
-optionally add
+Optionally add
 ```sh
 $ sudo docker run --read-only -v tor_proxy_data:/var/lib/tor --tmpfs /tmp:rw,size=4k` …
 ```
-to make the container's root filesystem read-only
+to make the container's root filesystem read-only.
 
-### isolate
+### Isolate Host
 
 ```sh
 sudo iptables -A OUTPUT ! -o lo -j REJECT --reject-with icmp-admin-prohibited
 ```
 
-### change `SocksTimeout` option
+### Change `SocksTimeout` Option
 
 ```sh
 $ sudo docker run -e SOCKS_TIMEOUT_SECONDS=60 …
 ```
 
-### show circuits
+### Show Circuits
 
 ```sh
 $ sudo docker exec tor_proxy \
@@ -61,4 +61,12 @@ or using [onioncircuits](https://gitlab.tails.boum.org/tails/onioncircuits) ([de
 $ sudo apt-get install --no-install-recommends onioncircuits
 $ sudo nsenter --target "$(sudo docker inspect --format='{{.State.Pid}}' tor_proxy)" --net \
     sudo -u $USER onioncircuits
+```
+
+### Troubleshooting
+
+Disable `SafeLogging` (temporarily) to log IP addresses instead of `[scrubbed]`:
+```
+$ sudo docker exec tor_proxy \
+    sh -c 'printf "AUTHENTICATE\nSETCONF SafeLogging=0\nQUIT\n" | nc localhost 9051'
 ```
