@@ -56,8 +56,9 @@ $ sudo docker exec tor_proxy \
 ```
 relay search: https://metrics.torproject.org/rs.html
 
-or using [onioncircuits](https://gitlab.tails.boum.org/tails/onioncircuits)([debian repo](https://salsa.debian.org/pkg-privacy-team/onioncircuits)):
+or using [onioncircuits](https://gitlab.tails.boum.org/tails/onioncircuits) ([debian repo](https://salsa.debian.org/pkg-privacy-team/onioncircuits)):
 ```sh
+$ sudo apt-get install --no-install-recommends onioncircuits
 $ sudo nsenter --target "$(sudo docker inspect --format='{{.State.Pid}}' tor_proxy)" --net \
     sudo -u $USER onioncircuits
 ```
