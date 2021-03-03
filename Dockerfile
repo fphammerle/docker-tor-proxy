@@ -27,3 +27,9 @@ HEALTHCHECK CMD \
         | grep -q network-liveness=up \
     && nslookup -port=9053 google.com localhost | grep -v NXDOMAIN | grep -q google \
     || exit 1
+
+# https://github.com/opencontainers/image-spec/blob/v1.0.1/annotations.md
+ARG REVISION=
+LABEL org.opencontainers.image.title="tor socks, dns & transparent proxy" \
+    org.opencontainers.image.source="https://github.com/fphammerle/docker-tor-proxy" \
+    org.opencontainers.image.revision="$REVISION"

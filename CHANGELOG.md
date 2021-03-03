@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - enabled transparent proxy, listening on port `9040` (requires netfilter rules)
+- image labels:
+  - `org.opencontainers.image.revision` (git commit hash via build arg)
+  - `org.opencontainers.image.source` (repo url)
+  - `org.opencontainers.image.title`
 
 ## [4.0.0] - 2021-01-01
 ### Changed
