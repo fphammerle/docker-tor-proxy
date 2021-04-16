@@ -1,4 +1,4 @@
-FROM docker.io/alpine:3.13.4
+FROM docker.io/alpine:3.13.5
 
 ARG TOR_PACKAGE_VERSION=0.4.4.8-r0
 RUN apk add --no-cache tor=$TOR_PACKAGE_VERSION
