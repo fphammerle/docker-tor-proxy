@@ -5,8 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.2.0] - 2021-04-30
 ### Added
-- when started as `uid=0`:
+- when running entrypoint as `uid=0`:
   add `nftables` rule redirecting `tcp` traffic to transparent proxy
 
 ## [4.1.0] - 2021-03-03
@@ -66,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - tor socks5 & DNS proxy
 
-[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.1.0...HEAD
+[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v2.1.0...v3.0.0
