@@ -1,7 +1,11 @@
 FROM docker.io/alpine:3.13.5
 
+# nftables + dependencies add 2.3MB to image
 ARG TOR_PACKAGE_VERSION=0.4.4.8-r0
-RUN apk add --no-cache tor=$TOR_PACKAGE_VERSION
+ARG NFTABLES_PACKAGE_VERSION=0.9.7-r0
+RUN apk add --no-cache \
+        nftables=$NFTABLES_PACKAGE_VERSION \
+        tor=$TOR_PACKAGE_VERSION
 VOLUME /var/lib/tor
 
 #RUN apk add --no-cache \
@@ -17,7 +21,8 @@ RUN chmod -c a+rX /torrc.template /entrypoint.sh
 ENV SOCKS_TIMEOUT_SECONDS=
 ENTRYPOINT ["/entrypoint.sh"]
 
-USER tor
+# entrypoint.sh drops privileges after configuring nftables for transparent proxy
+#USER tor
 CMD ["tor", "-f", "/tmp/torrc"]
 
 # keeping dns requests as network-liveness is too optimistic
