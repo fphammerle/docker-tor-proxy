@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.3.0] - 2021-05-07
 ### Added
 - when running entrypoint as `uid=0`:
   add `nftables` rule forwarding udp dns requests (port 53) to tor
@@ -72,7 +74,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - tor socks5 & DNS proxy
 
-[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.2.0...HEAD
+[Unreleased]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.3.0...HEAD
+[4.3.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/fphammerle/docker-tor-proxy/compare/v3.0.0...v4.0.0
