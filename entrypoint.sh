@@ -3,6 +3,7 @@
 set -e
 
 if [ "$(id -u)" -eq 0 ]; then
+    nft add chain ip nat PREROUTING { type nat hook prerouting priority dstnat \; } || true
     nft add rule ip nat PREROUTING ip protocol tcp fib daddr type != local counter redirect to :9040 \
         || echo 'warning: failed to configure nftables for transparent proxy (missing CAP_NET_ADMIN?)'
     nft add rule ip nat PREROUTING fib daddr type local udp dport 53 counter redirect to :9053 \
