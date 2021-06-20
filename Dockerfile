@@ -1,8 +1,8 @@
-FROM docker.io/alpine:3.13.5
+FROM docker.io/alpine:3.14.0
 
 # nftables + dependencies add 2.3MB to image
-ARG TOR_PACKAGE_VERSION=0.4.4.9-r0
-ARG NFTABLES_PACKAGE_VERSION=0.9.7-r0
+ARG TOR_PACKAGE_VERSION=0.4.5.9-r0
+ARG NFTABLES_PACKAGE_VERSION=0.9.9-r0
 RUN apk add --no-cache \
         nftables=$NFTABLES_PACKAGE_VERSION \
         tor=$TOR_PACKAGE_VERSION
