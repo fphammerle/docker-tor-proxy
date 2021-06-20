@@ -1,8 +1,16 @@
+# sync with https://github.com/fphammerle/docker-onion-service/blob/master/.github/dependabot.yml
+
 version: 2
 
 updates:
 - package-ecosystem: docker
   directory: /
+  schedule:
+    interval: weekly
+    day: friday
+- package-ecosystem: github-actions
+  directory: /
+  # > YAML aliases are not supported
   schedule:
     interval: weekly
     day: friday
