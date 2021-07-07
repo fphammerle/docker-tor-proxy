@@ -20,4 +20,10 @@ else
     sed -e "s/{socks_timeout_seconds}/$SOCKS_TIMEOUT_SECONDS/" /torrc.template > /tmp/torrc
 fi
 
+if [ -z "$EXCLUDE_EXIT_NODES" ]; then
+    sed --in-place -e '/{exclude_exit_nodes}/d' /tmp/torrc
+else
+    sed --in-place -e "s#{exclude_exit_nodes}#$EXCLUDE_EXIT_NODES#" /tmp/torrc
+fi
+
 exec "$@"

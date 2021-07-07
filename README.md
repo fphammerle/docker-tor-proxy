@@ -48,6 +48,12 @@ sudo iptables -A OUTPUT ! -o lo -j REJECT --reject-with icmp-admin-prohibited
 $ sudo docker run -e SOCKS_TIMEOUT_SECONDS=60 …
 ```
 
+### Exclude Exit Nodes
+
+```sh
+$ sudo docker run -e EXCLUDE_EXIT_NODES=1.2.3.4,1.2.3.5 …
+```
+
 ### Show Circuits
 
 ```sh

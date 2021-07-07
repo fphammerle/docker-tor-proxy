@@ -11,6 +11,7 @@ VOLUME /var/lib/tor
 #RUN apk add --no-cache \
 #        less \
 #        man-db \
+#        strace \
 #        tor-doc=$TOR_PACKAGE_VERSION
 #ENV PAGER=less
 
