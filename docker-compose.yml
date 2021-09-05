@@ -9,6 +9,7 @@ services:
     image: fphammerle/tor-proxy
     environment:
       SOCKS_TIMEOUT_SECONDS: 30
+      #EXIT_NODES: '1.2.3.4,1.2.3.5,{at}'
       #EXCLUDE_EXIT_NODES: '{xx},{yy},1.2.3.4,128.0.0.0/1'
     volumes:
     - type: volume

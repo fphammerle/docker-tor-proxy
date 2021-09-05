@@ -19,7 +19,9 @@ EXPOSE 9050/tcp
 EXPOSE 9053/udp
 COPY torrc.template entrypoint.sh /
 RUN chmod -c a+rX /torrc.template /entrypoint.sh
-ENV SOCKS_TIMEOUT_SECONDS=
+ENV SOCKS_TIMEOUT_SECONDS= \
+    EXIT_NODES= \
+    EXCLUDE_EXIT_NODES=
 ENTRYPOINT ["/entrypoint.sh"]
 
 # entrypoint.sh drops privileges after configuring nftables for transparent proxy
