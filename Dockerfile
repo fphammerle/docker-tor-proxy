@@ -1,4 +1,4 @@
-FROM docker.io/alpine:3.14.3
+FROM docker.io/alpine:3.15.0
 
 # nftables + dependencies add 2.3MB to image
 ARG TOR_PACKAGE_VERSION=0.4.5.10-r0
