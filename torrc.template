@@ -26,9 +26,5 @@ SocksTimeout {socks_timeout_seconds}
 # https://github.com/mitmproxy/mitmproxy/blob/v6.0.2/mitmproxy/platform/linux.py#L27
 TransPort 0.0.0.0:9040 IsolateClientAddr IsolateClientProtocol
 
-# > list of identity fingerprints, country codes, and address patterns
-ExitNodes {exit_nodes}
-ExcludeExitNodes {exclude_exit_nodes}
-
 # try to
 HardwareAccel 1
