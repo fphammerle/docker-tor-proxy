@@ -13,7 +13,9 @@ ControlPort localhost:9051
 
 DNSPort 0.0.0.0:9053
 
-SocksPort 0.0.0.0:9050
+# IsolateClientAddr & IsolateSOCKSAuth enabled by default
+# https://web.archive.org/web/20230113155700/https://gitweb.torproject.org/tor.git/tree/doc/man/tor.1.txt?h=tor-0.4.7.13&id=7c1601fb6edd780ffef386936217ede9531c26e6#n1483
+SocksPort 0.0.0.0:9050 IsolateClientAddr IsolateSOCKSAuth
 SocksTimeout {socks_timeout_seconds}
 
 # requires netfilter rules
