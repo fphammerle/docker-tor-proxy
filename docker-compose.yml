@@ -8,6 +8,7 @@ services:
     build: .
     image: fphammerle/tor-proxy
     environment:
+      #SAFE_SOCKS: 1
       SOCKS_TIMEOUT_SECONDS: 30
       #EXIT_NODES: '1.2.3.4,1.2.3.5,{at}'
       #EXCLUDE_EXIT_NODES: '{xx},{yy},1.2.3.4,128.0.0.0/1'

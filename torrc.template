@@ -16,6 +16,24 @@ DNSPort 0.0.0.0:9053
 # IsolateClientAddr & IsolateSOCKSAuth enabled by default
 # https://web.archive.org/web/20230113155700/https://gitweb.torproject.org/tor.git/tree/doc/man/tor.1.txt?h=tor-0.4.7.13&id=7c1601fb6edd780ffef386936217ede9531c26e6#n1483
 SocksPort 0.0.0.0:9050 IsolateClientAddr IsolateSOCKSAuth
+# > reject application connections [...] that only provide an IP address [...]
+# > not doing remote DNS
+# with `SafeSocks 1`:
+# $ for p in socks4 socks4a socks5 socks5h; do \
+#   echo -n "$p: ";
+#   curl -o /dev/null --no-progress-meter -x $p://127.0.0.1:9050 https://ipinfo.tw
+#     && echo success;
+#   done
+# > socks4: curl: (97) Can't complete SOCKS4 connection to 0.0.0.0:0. (91), request rejected or failed.
+# > socks4a: success
+# > socks5: curl: (97) Can't complete SOCKS5 connection to ipinfo.tw. (2)
+# > socks5h: success
+# log:
+# > [warn] {APP} Your application (using socks4 to port 443) is giving Tor only
+# . an IP address. Applications that do DNS resolves themselves may leak
+# . information. Consider using Socks4A [...]
+# > [warn] {APP} Your application (using socks5 to port 443) is giving Tor [...]
+SafeSocks {safe_socks}
 SocksTimeout {socks_timeout_seconds}
 
 # requires netfilter rules

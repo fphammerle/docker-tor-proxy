@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- support for enabling `SafeSocks` option by assigning `1` to environment
+  variable `SAFE_SOCKS` (instructs tor to block socks connections when provided
+  with remote ip address instead of domain name to detect dns leaks due to
+  applications resolving domain names without tor)
 
 ## [4.5.1] - 2022-02-27
 ### Fixed
