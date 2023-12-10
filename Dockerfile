@@ -1,11 +1,13 @@
-FROM docker.io/alpine:3.18.5
+FROM docker.io/alpine:3.19.0
 
 # https://gitweb.torproject.org/tor.git/plain/ChangeLog
 # https://gitlab.torproject.org/tpo/core/tor/-/raw/release-0.4.8/ReleaseNotes
 # https://git.alpinelinux.org/aports/log/community/tor?h=3.18-stable
 ARG TOR_PACKAGE_VERSION=0.4.8.10-r0
 # nftables + dependencies add 2.3MB to image
-ARG NFTABLES_PACKAGE_VERSION=1.0.7-r2
+# https://www.netfilter.org/projects/nftables/downloads.html
+# https://git.alpinelinux.org/aports/log/main/nftables?h=3.19-stable
+ARG NFTABLES_PACKAGE_VERSION=1.0.9-r0
 RUN apk add --no-cache \
         nftables=$NFTABLES_PACKAGE_VERSION \
         tor=$TOR_PACKAGE_VERSION
