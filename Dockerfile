@@ -7,7 +7,7 @@ ARG TOR_PACKAGE_VERSION=0.4.8.10-r0
 # nftables + dependencies add 2.3MB to image
 # https://www.netfilter.org/projects/nftables/downloads.html
 # https://git.alpinelinux.org/aports/log/main/nftables?h=3.19-stable
-ARG NFTABLES_PACKAGE_VERSION=1.0.9-r0
+ARG NFTABLES_PACKAGE_VERSION=1.0.9-r1
 RUN apk add --no-cache \
         nftables=$NFTABLES_PACKAGE_VERSION \
         tor=$TOR_PACKAGE_VERSION
