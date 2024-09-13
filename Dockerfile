@@ -1,4 +1,4 @@
-FROM docker.io/alpine:3.20.2
+FROM docker.io/alpine:3.20.3
 
 # https://gitweb.torproject.org/tor.git/plain/ChangeLog
 # https://gitlab.torproject.org/tpo/core/tor/-/raw/release-0.4.8/ReleaseNotes
