@@ -1,5 +1,4 @@
-# sync with https://github.com/fphammerle/docker-onion-service/blob/master/.github/workflows/container-image.yml
-
+---
 name: container image
 
 on:
@@ -11,16 +10,47 @@ on:
 jobs:
   docker-build:
     runs-on: ubuntu-24.04
+    permissions: {packages: write}
     steps:
+    - id: meta
+      # > "automatic" tag management and OCI Image Format Spec… for labels
+      # https://web.archive.org/web/20250103123053/https://docs.docker.com/build/ci/github-actions/manage-tags-labels/
+      uses: docker/metadata-action@v5
+      with:
+        # see comment on `push: true` below
+        images: ghcr.io/${{ github.repository_owner }}/tor-proxy
+        # https://web.archive.org/web/20250103130404/https://github.com/docker/metadata-action?tab=readme-ov-file#tags-input
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,format=long
+          type=raw,value=latest,enable=false
     - uses: docker/setup-qemu-action@v3.6.0
+    - uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - uses: docker/setup-buildx-action@v3.11.1
     # > By default, this action uses the Git context so you don't need to use
     # > the actions/checkout action to checkout the repository because this
     # > will be done directly by buildkit. [...]
-    # > any file mutation in the steps that precede [...] will be ignored
+    # > any file mutation in the steps that precede [...] will be ignored,
+    # > including processing of the .dockerignore file
     # https://github.com/marketplace/actions/build-and-push-docker-images
+    # > The commit history is not preserved.
+    # https://docs.docker.com/engine/reference/commandline/build/#git-repositories
     - uses: docker/build-push-action@v6.18.0
       with:
         platforms: |
           linux/amd64
+          linux/arm/v6
           linux/arm/v7
+          linux/arm64
+        # > Require approval for all external contributors
+        # > All users that are not a member or owner of this repository will
+        # > require approval to run workflows.
+        # https://github.com/fphammerle/docker-tor-proxy/settings/actions
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
